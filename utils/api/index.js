@@ -16,9 +16,16 @@ const APIGetAllJobs = async () => {
 
 const APIPostNewJob = async (job) => {
     var res = await axios.post(API.POST_JOB, { job })
+    return res
+}
+
+const APIDelJob = async (id) => {
+    var res = await axios.delete(API.DELETE_JOB(id))
+    return res
 }
 
 export {
     APIGetAllJobs,
-    APIPostNewJob
+    APIPostNewJob,
+    APIDelJob
 }

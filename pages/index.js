@@ -16,7 +16,8 @@ export default function Home() {
     },
 
     getAllJobs,
-    postNewJob
+    postNewJob,
+    deleteJob
   ] = useJobs()
 
   useEffect(() => { getAllJobs() }, [])
@@ -34,7 +35,7 @@ export default function Home() {
           setVisible={setVisible}
         />
         <FormJob visible={visible} postNewJob={postNewJob} />
-        <ListJobs jobs={jobs} />
+        <ListJobs jobs={jobs} deleteJob={deleteJob} />
       </Layout>
     </div>
   )

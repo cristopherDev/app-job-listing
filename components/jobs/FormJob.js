@@ -55,8 +55,8 @@ export default function FormJob({ visible, postNewJob }) {
                                     <Input />
                                 </Form.Item>
                                 <Form.Item label="Tipo de prioridad" 
-                                    label="tag"
-                                    name="tag"
+                                    label="tags"
+                                    name="tags"
                                 >
                                     <Radio.Group>
                                         <Radio.Button value="NORMAL">NORMAL</Radio.Button>

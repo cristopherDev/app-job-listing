@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { APIGetAllJobs, APIPostNewJob } from './api'
+import { message } from 'antd'
+import { APIGetAllJobs, APIPostNewJob, APIDelJob } from './api'
 
 function useJobs() {
     const [jobs, setJobs] = useState([])
@@ -29,6 +30,20 @@ function useJobs() {
         }
     }
 
+    const deleteJob = async (id) => {
+        try {
+            var res = await APIDelJob(id)
+
+            console.log(res)
+
+            message.info('Pendiente eliminado...')
+
+            await getAllJobs()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return [
         {
             jobs,
@@ -36,7 +51,8 @@ function useJobs() {
         },
 
         getAllJobs,
-        postNewJob
+        postNewJob,
+        deleteJob
     ]
 }
 
