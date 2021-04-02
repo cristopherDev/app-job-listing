@@ -17,6 +17,7 @@ export default function Home() {
 
     getAllJobs,
     postNewJob,
+    patchCloseJob,
     deleteJob
   ] = useJobs()
 
@@ -35,7 +36,7 @@ export default function Home() {
           setVisible={setVisible}
         />
         <FormJob visible={visible} postNewJob={postNewJob} />
-        <ListJobs jobs={jobs} deleteJob={deleteJob} />
+        <ListJobs jobs={jobs} patchCloseJob={patchCloseJob} deleteJob={deleteJob} />
       </Layout>
     </div>
   )

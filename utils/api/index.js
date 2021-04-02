@@ -19,6 +19,11 @@ const APIPostNewJob = async (job) => {
     return res
 }
 
+const APIPatchJob = async (id, job) => {
+    var res = await axios.patch(API.PATCH_JOB(id), { job: job })
+    return res
+}
+
 const APIDelJob = async (id) => {
     var res = await axios.delete(API.DELETE_JOB(id))
     return res
@@ -27,5 +32,6 @@ const APIDelJob = async (id) => {
 export {
     APIGetAllJobs,
     APIPostNewJob,
+    APIPatchJob,
     APIDelJob
 }

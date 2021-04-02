@@ -23,7 +23,7 @@ const Styles = {
     }
 }
 
-export default function ListJobs({ jobs, deleteJob }) {
+export default function ListJobs({ jobs, patchCloseJob, deleteJob }) {
     if (jobs.length) {
         return (
             <>
@@ -38,7 +38,13 @@ export default function ListJobs({ jobs, deleteJob }) {
                                 key={job['_id']} 
                                 style={Styles.myJobs}
                                 actions={[
-                                    <Button type="text" shape="circle" icon={<CheckOutlined />} />,
+                                    <Button 
+                                        type="text" 
+                                        shape="circle" 
+                                        onClick={() => patchCloseJob(job['_id'], job)} 
+                                        disabled={job.status == 'TERMINADO' ? true : false}
+                                        icon={<CheckOutlined />} 
+                                    />,
                                     <Button type="text" shape="circle" icon={<EditOutlined />} />,
                                     <Button type="text" shape="circle" onClick={() => deleteJob(job['_id'])} icon={<DeleteOutlined />} />
                                 ]}
@@ -48,6 +54,7 @@ export default function ListJobs({ jobs, deleteJob }) {
                                 </p>
 
                                 <Tag style={Styles.myTag}>{job.tags}</Tag>
+                                <Tag style={Styles.myTag} color={job.status == 'TERMINADO' ? 'blue' : 'orange'}>{job.status}</Tag>
 
                                 <p>{job.observations}</p>
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { message } from 'antd'
-import { APIGetAllJobs, APIPostNewJob, APIDelJob } from './api'
+import { APIGetAllJobs, APIPostNewJob, APIPatchJob, APIDelJob } from './api'
 
 function useJobs() {
     const [jobs, setJobs] = useState([])
@@ -21,6 +21,23 @@ function useJobs() {
     const postNewJob = async (job) => {
         try {
             var res = await APIPostNewJob(job)
+
+            console.log(res)
+
+            await getAllJobs()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const patchCloseJob = async (id, job) => {
+        try {
+            delete job['_id']
+            delete job['created']
+
+            job.status = "TERMINADO"
+
+            var res = await APIPatchJob(id, job)
 
             console.log(res)
 
@@ -52,6 +69,7 @@ function useJobs() {
 
         getAllJobs,
         postNewJob,
+        patchCloseJob,
         deleteJob
     ]
 }
